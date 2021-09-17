@@ -395,6 +395,11 @@ li.fas {
     background-image: linear-gradient(black, rgba(0, 0, 0, 0.3)), url(./img/desktech.jpg);
 }
 
+.block-team img {
+    border: 4px solid black;
+    width: 10vw;
+}
+
 .block-team h1 {
     text-align: center;
 }

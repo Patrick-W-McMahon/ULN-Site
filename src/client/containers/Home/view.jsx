@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import Block from '../../components/Block';
 import { Row, Col, Container } from 'react-bootstrap';
 
+const showCashPool = false;
+
 const formatNumber = (price, dec) => price.toLocaleString("en-US", {
     minimumFractionDigits: dec || 0,
     maximumFractionDigits: dec || 0,
@@ -16,6 +18,7 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
             <Col xs lg="2">
                 <header>Total Supply</header>
                 <div>{formatNumber(token_supply)}</div>
+                {showCashPool ? <sub>${formatNumber((crypto_BNB * token_price * token_supply), 2)}</sub> : null}
             </Col>
             <Col xs lg="2">
                 <header>ICO Sales Price</header>
@@ -165,9 +168,9 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
             <h1>Meet Our Talented Team Members</h1>
             <Row>
                 <Col>
-                <img alt="Patrick W. McMahon" src="./img/patrick.jpg" />
-                <header>Patrick W. McMahon</header>
-                <sub>CEO/CTO</sub>
+                    <img alt="Patrick W. McMahon" src="./img/patrick.jpg" />
+                    <header>Patrick W. McMahon</header>
+                    <sub>CEO/CTO</sub>
                 </Col>
             </Row>
             </Container>
