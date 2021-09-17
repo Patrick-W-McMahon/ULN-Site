@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { GetUserName, GetENV } = require('./routes/system');
+const { GetPrice } = require('./routes/crypto')
 const { getContacts, postContact, deleteContact } = require('./routes/contacts');
 const { postMatch } = require('./routes/rockPaperScissors');
 const { postTttMatch } = require('./routes/ticTacToe');
@@ -12,6 +13,7 @@ const { postTttMatch } = require('./routes/ticTacToe');
 //     next();
 // });
 //Home page
+router.get('/api/crypto', GetPrice);
 router.get('/api/username', GetUserName);
 //Get ENV
 router.get('/api/env', GetENV);

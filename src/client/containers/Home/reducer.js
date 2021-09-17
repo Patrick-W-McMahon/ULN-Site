@@ -1,63 +1,42 @@
 import {
-    FETCH_NAME_BEGIN,
-    FETCH_NAME_SUCCESS,
-    FETCH_NAME_FAILURE,
-    FETCH_ENV_BEGIN,
-    FETCH_ENV_SUCCESS,
-    FETCH_ENV_FAILURE
+    FETCH_CRYPTO_PRICE_BEGIN,
+    FETCH_CRYPTO_PRICE_SUCCESS,
+    FETCH_CRYPTO_PRICE_FAILURE
 } from './action';
 
 const initialState = {
     loading: false,
     error: false,
-    name: '',
-    env: false
+    price: {
+        BNBUSDT: 0.00,
+        ETHUSDT: 0.00
+    }
 };
 
 export default function Home(state = initialState, action) {
     switch (action.type) {
-        case FETCH_NAME_BEGIN:
+        case FETCH_CRYPTO_PRICE_BEGIN:
             return {
                 ...state,
                 loading: true,
-                error: false,
-                name: ''
+                error: false
             };
-        case FETCH_NAME_SUCCESS:
+        case FETCH_CRYPTO_PRICE_SUCCESS:
+            const { symbol, price } = action.data;
+            let newPrice = state.price;
+            newPrice[symbol] = price;
             return {
                 ...state,
                 loading: false,
                 error: false,
-                name: action.name
+                price: newPrice
             };
-        case FETCH_NAME_FAILURE:
+        case FETCH_CRYPTO_PRICE_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.error,
-                name: ''
-            };
-        case FETCH_ENV_BEGIN:
-            return {
-                ...state,
-                loaing: true,
-                error: false,
-                env: null
-            };
-        case FETCH_ENV_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                error: false,
-                env: action.env
-            };
-        case FETCH_ENV_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: false,
-                env: null
-            };
+                error: action.error
+            }
         default:
             return state;
     }

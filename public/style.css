@@ -223,6 +223,13 @@ body {
     font-weight: 600;
 }
 
+.briz-col .col sub {
+    font-size: 14px;
+    margin: 0 auto 15px auto;
+    font-weight: 400;
+    color: lightgray;
+}
+
 .briz-col.briz-primary>* {
     background: rgba(var(--clr-primary), 0.75);
     color: black;
