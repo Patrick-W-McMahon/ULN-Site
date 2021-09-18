@@ -2,7 +2,7 @@
 Website for Universal Linking Network
 
 
-install:
+install packages:
 
 ```bash
 npm install
