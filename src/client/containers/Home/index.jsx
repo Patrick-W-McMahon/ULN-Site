@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { fetchCryptoPrice } from './action';
 import HomeView from './view';
+import team from '../../data/team.json';
 
 class Home extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Home extends Component {
   render() {
     const { loading, price } = this.props;
     const { BNBUSDT, ETHUSDT } = price;
-    return <HomeView token_supply={20000000} token_price={0.25} reg_price={100} crypto_BNB={BNBUSDT} crypto_ETH={ETHUSDT} />;
+    return <HomeView token_supply={20000000} token_price={0.25} reg_price={100} crypto_BNB={BNBUSDT} crypto_ETH={ETHUSDT} team={team} />;
   }
 }
 

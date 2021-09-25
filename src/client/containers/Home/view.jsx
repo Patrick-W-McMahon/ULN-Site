@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Block from '../../components/Block';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Card } from 'react-bootstrap';
 
 const showCashPool = false;
 
@@ -9,7 +9,7 @@ const formatNumber = (price, dec) => price.toLocaleString("en-US", {
     maximumFractionDigits: dec || 0,
 });
 
-const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH }) => (
+const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH, team }) => (
     <Fragment>
         <Block title={'header'} showTitle={false} className={"img-bg"} >
             <h1>ULN</h1>
@@ -165,14 +165,20 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
         </Block>
         <Block title={'team'} showTitle={false} className={"img-bg"}>
             <Container>
-            <h1>Meet Our Talented Team Members</h1>
-            <Row>
-                <Col>
-                    <img alt="Patrick W. McMahon" src="./img/patrick.jpg" />
-                    <header>Patrick W. McMahon</header>
-                    <sub>CEO/CTO</sub>
-                </Col>
-            </Row>
+                <h1>Meet Our Talented Team Members</h1>
+                <Row>
+                    {team.map((person, index) => {
+                        return (
+                            <Card key={index} style={{ width: '18rem' }}>
+                                <Card.Img variant="top" alt={person.name} src={`./img/team/${person.img}`} />
+                                <Card.Body>
+                                    <Card.Title>{person.name}</Card.Title>
+                                    <Card.Text>{person.title}</Card.Text>
+                                </Card.Body>
+                            </Card>
+                        );
+                    })}
+                </Row>
             </Container>
         </Block>
     </Fragment>
