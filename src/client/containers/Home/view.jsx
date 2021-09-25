@@ -9,7 +9,7 @@ const formatNumber = (price, dec) => price.toLocaleString("en-US", {
     maximumFractionDigits: dec || 0,
 });
 
-const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH, team }) => (
+const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH, team, timeline }) => (
     <Fragment>
         <Block title={'header'} showTitle={false} className={"img-bg"} >
             <h1>ULN</h1>
@@ -132,32 +132,14 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
             <Container>
             <Row>
                 <Col xs lg="7">
-                <ul>
-                    <li className="fas fa-highlighter">
-                    <header><span>01.</span> ICO sale</header>
-                    <p>The sale of the ULN Token will fund the development and marketing.</p>
-                    </li>
-                    <li className="fas fa-highlighter">
-                    <header><span>02.</span> Beta Test Net </header>
-                    <p>We will let users with the needed ULN Tokens  generate RegKeys for the Beta Test Network.</p>
-                    </li>
-                    <li className="fas fa-highlighter">
-                    <header><span>03.</span>Stable Main Network</header>
-                    <p>Main Net goes live alongside the conversion widget that will let users buy RegKeys for the network using ULN Tokens. </p>
-                    </li>
-                    <li className="fas fa-highlighter">
-                    <header><span>04.</span> Linking Major Networks</header>
-                    <p>Linking Nodes will be established to all Blockchains. With each new Linking Node the network will grow in assets and profitability for node operators. </p>
-                    </li>
-                    <li className="fas fa-highlighter">
-                    <header><span>05.</span> Integrated Exchange</header>
-                    <p>The integrated Exchange will go live; giving users and node operators the ability to convert all currencies and assets on the network.</p>
-                    </li>
-                    <li className="fas fa-highlighter">
-                    <header><span>06.</span> User Friendly Builder</header>
-                    <p>The best part of the network is removing the need for extensive programming skills to develop a crypto-asset. With the builder tool we will open the world to blockchain assets. </p>
-                    </li>
-                </ul>
+                    <ul>
+                        {timeline.map((item, index) => (
+                            <li key={index} className="fas fa-highlighter">
+                                <header><span>0{index+1}.</span> {item.title}</header>
+                                <p>{item.body}</p>
+                            </li>
+                        ))}
+                    </ul>
                 </Col>
                 <Col xs lg="1"><i className="fas fa-layer-group icon-big"></i></Col>
             </Row>
