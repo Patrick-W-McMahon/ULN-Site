@@ -11,8 +11,12 @@
         "body": "Main Net goes live alongside the conversion widget that will let users buy RegKeys for the network using ULN Tokens."
     },
     {
-        "title": "Beta Test Net",
+        "title": "Linking Major Networks",
         "body": "Linking Nodes will be established to all Blockchains. With each new Linking Node the network will grow in assets and profitability for node operators."
+    },
+    {
+        "title": "Payment Gateway APIs",
+        "body": "We will develop Payment Gateway APIs that can connect your websites to the ULN network to proccess payments."
     },
     {
         "title": "Integrated Exchange",
@@ -21,5 +25,13 @@
     {
         "title": "User Friendly Builder",
         "body": "The best part of the network is removing the need for extensive programming skills to develop a crypto-asset. With the builder tool we will open the world to blockchain assets."
+    },
+    {
+        "title": "World Market Design",
+        "body": "Using the power of OpenSimulator; we will build an interactive 3D model of our in world market designs for the community to view before major investment in real world infrustructure begins."
+    },
+    {
+        "title": "Ground Work Begins",
+        "body": "Using the final designs from our Open Simulation, ground would will begin on the construction of modern real world markets that can take advantage of the ULN infrastructur."
     }
 ]

@@ -251,6 +251,10 @@ body {
     border-right: none;
 }
 
+.block-section.block-header:nth-child(1) .briz-col {
+    margin-top: 8px;
+}
+
 .block-intro {
     font-size: 1.2em;
 }
@@ -424,4 +428,11 @@ li.fas {
 
 .block-team sub {
     font-size: 18px;
+}
+
+.block-section>header {
+    background: lightgray;
+    color: black;
+    font-size: 2.4em;
+    font-weight: 600;
 }

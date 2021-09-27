@@ -1,6 +1,6 @@
 const https = require('https');
 
-const GetPrice = (req, res) => {
+const getPrice = (req, res) => {
     const { keypair } = req.query;
     const mres = res;
 
@@ -21,5 +21,5 @@ const GetPrice = (req, res) => {
 };
 
 module.exports = {
-    GetPrice
+    getPrice
 };

@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-const { GetUserName, GetENV } = require('./routes/system');
-const { GetPrice } = require('./routes/crypto')
-const { getContacts, postContact, deleteContact } = require('./routes/contacts');
-const { postMatch } = require('./routes/rockPaperScissors');
-const { postTttMatch } = require('./routes/ticTacToe');
+//const { GetUserName, GetENV } = require('./routes/system');
+const { getPrice } = require('./routes/crypto');
+const { getStaticData } = require('./routes/staticData');
+//const { getContacts, postContact, deleteContact } = require('./routes/contacts');
+//const { postMatch } = require('./routes/rockPaperScissors');
+//const { postTttMatch } = require('./routes/ticTacToe');
 
 //Middle ware that is specific to this router
 // router.use(function timeLog(req, res, next) {
@@ -13,17 +14,18 @@ const { postTttMatch } = require('./routes/ticTacToe');
 //     next();
 // });
 //Home page
-router.get('/api/crypto', GetPrice);
-router.get('/api/username', GetUserName);
+router.get('/api/crypto', getPrice);
+router.get('/api/static_data', getStaticData);
+//router.get('/api/username', getUserName);
 //Get ENV
-router.get('/api/env', GetENV);
+//router.get('/api/env', GetENV);
 //Contacts
-router.get('/api/contacts', getContacts);
-router.post('/api/contacts', postContact);
-router.delete('/api/contacts/:id', deleteContact);
+//router.get('/api/contacts', getContacts);
+//router.post('/api/contacts', postContact);
+//outer.delete('/api/contacts/:id', deleteContact);
 //Rock Paper Scissors
-router.post('/api/match', postMatch);
+//router.post('/api/match', postMatch);
 //Tick Tac Toe
-router.post('/api/tic-tac-toe/move', postTttMatch);
+//router.post('/api/tic-tac-toe/move', postTttMatch);
 
 module.exports = router;

@@ -1,35 +1,43 @@
 import React, { Fragment } from 'react';
 import Block from '../../components/Block';
 import { Row, Col, Container, Card } from 'react-bootstrap';
+import { formatNumber, padNum } from '../../libs/system';
 
-const showCashPool = false;
-
-const formatNumber = (price, dec) => price.toLocaleString("en-US", {
-    minimumFractionDigits: dec || 0,
-    maximumFractionDigits: dec || 0,
-});
-
-const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH, team, timeline }) => (
+const HomeView = ({ token_supply, token_price, reg_price, circulating, crypto_BNB, crypto_ETH, team, timeline }) => (
     <Fragment>
         <Block title={'header'} showTitle={false} className={"img-bg"} >
             <h1>ULN</h1>
             <sub>Universal Linking Network</sub>
             <Row className="briz-col briz-primary justify-content-md-center">
-            <Col xs lg="2">
-                <header>Total Supply</header>
-                <div>{formatNumber(token_supply)}</div>
-                {showCashPool ? <sub>${formatNumber((crypto_BNB * token_price * token_supply), 2)}</sub> : null}
-            </Col>
-            <Col xs lg="2">
-                <header>ICO Sales Price</header>
-                <div>{token_price}BNB</div>
-                <sub>${formatNumber((crypto_BNB * token_price), 2)} USD</sub>
-            </Col>
-            <Col xs lg="2">
-                <header>Registration Key Price</header>
-                <div>{reg_price} ULN Tokens</div>
-                <sub>${formatNumber(reg_price * (crypto_BNB * token_price), 2)} USD</sub>
-            </Col>
+                <Col xs lg="2">
+                    <header>Total Supply</header>
+                    <div>{formatNumber(token_supply)}</div>
+                    <sub>${formatNumber((crypto_BNB * token_price * token_supply), 2)}</sub>
+                </Col>
+                <Col xs lg="2">
+                    <header>Value</header>
+                    <div>{token_price} BNB</div>
+                    <sub>${formatNumber((crypto_BNB * token_price), 2)} USD</sub>
+                </Col>
+                <Col xs lg="2">
+                    <header>Registration Key Price</header>
+                    <div>{reg_price} ULN Tokens</div>
+                    <sub>${formatNumber(reg_price * (crypto_BNB * token_price), 2)} USD</sub>
+                </Col>
+            </Row>
+            <Row className="briz-col briz-primary justify-content-md-center">
+                <Col xs lg="2">
+                    <header>Circulating</header>
+                    <div>{formatNumber(circulating)}</div>
+                </Col>
+                <Col xs lg="2">
+                    <header>Market Cap</header>
+                    <div>${formatNumber((circulating*(token_price*crypto_BNB)),2)}</div>
+                </Col>
+                <Col xs lg="2">
+                    <header>Total Reg Keys</header>
+                    <div>{formatNumber(token_supply / reg_price)}</div>
+                </Col>
             </Row>
         </Block>
         <Block title={'intro'} showTitle={false}>
@@ -133,12 +141,12 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
             <Row>
                 <Col xs lg="7">
                     <ul>
-                        {timeline.map((item, index) => (
+                        {timeline.length > 0 ? timeline.map((item, index) => (
                             <li key={index} className="fas fa-highlighter">
-                                <header><span>0{index+1}.</span> {item.title}</header>
+                                <header><span>{padNum(index+1,2)}.</span> {item.title}</header>
                                 <p>{item.body}</p>
                             </li>
-                        ))}
+                        )): <div>loading...</div>}
                     </ul>
                 </Col>
                 <Col xs lg="1"><i className="fas fa-layer-group icon-big"></i></Col>
@@ -149,7 +157,7 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
             <Container>
                 <h1>Meet Our Talented Team Members</h1>
                 <Row>
-                    {team.map((person, index) => {
+                    {team.length > 0 ? team.map((person, index) => {
                         return (
                             <Card key={index} style={{ width: '18rem' }}>
                                 <Card.Img variant="top" alt={person.name} src={`./img/team/${person.img}`} />
@@ -159,7 +167,7 @@ const HomeView = ({ token_supply, token_price, reg_price, crypto_BNB, crypto_ETH
                                 </Card.Body>
                             </Card>
                         );
-                    })}
+                    }) : <div>Loading...</div>}
                 </Row>
             </Container>
         </Block>
